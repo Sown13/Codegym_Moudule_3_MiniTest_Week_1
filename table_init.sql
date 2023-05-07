@@ -34,3 +34,5 @@ FOREIGN KEY (course_id) REFERENCES course(id),
 FOREIGN KEY (student_id) REFERENCES student(id)
 );
 ALTER TABLE student MODIFY phone INT;
+ALTER TABLE student rename column fullname to lastname;
+ALTER TABLE student ADD COLUMN firstname varchar(255) not null after lastname;
