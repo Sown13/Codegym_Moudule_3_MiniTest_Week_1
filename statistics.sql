@@ -17,9 +17,15 @@ inner join course on course.id = mark.course_id
 group by course_name;
 
 -- Khóa học có điểm trung bình cao nhất
-select max(avgTable.avgMark) from (
+select course_name, avgMark from (
 select course_name, avg(mark) as avgMark
 from mark
 inner join course on course.id = mark.course_id
 group by course_name
 ) as avgTable
+where avgMark = ( select max(avgMark) from (select course_name, avg(mark) as avgMark
+from mark
+inner join course on course.id = mark.course_id
+group by course_name
+) as avgTable);
+
